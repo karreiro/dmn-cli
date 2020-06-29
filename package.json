@@ -1,6 +1,6 @@
 {
   "name": "dmn-cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "dist/index.js",
   "source": "./src/index.ts",
   "lib": [
@@ -19,8 +19,10 @@
     "dmn-cli"
   ],
   "scripts": {
-    "clean": "rm -fr ./dist",
-    "build": "yarn run clean && tsc",
+    "clean": "rm -fr ./dist && mkdir ./dist",
+    "compile": "tsc",
+    "embed-dmn-editor": "cp -R ./src/dmn-editor ./dist",
+    "build": "yarn run clean && yarn run embed-dmn-editor && yarn run compile",
     "start": "./bin/dmn-cli"
   },
   "devDependencies": {
@@ -42,8 +44,9 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "@types/open": "^6.2.1",
     "commander": "^5.1.0",
-    "puppeteer": "^4.0.1",
-    "terminal-image": "^1.0.1"
+    "open": "^7.0.4",
+    "puppeteer": "^4.0.1"
   }
 }
