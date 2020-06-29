@@ -16,6 +16,7 @@
 import puppeteer from "puppeteer";
 import open from "open";
 import fs from "fs";
+// import ProgressBar from "progress";
 
 declare global {
   const gwtEditorBeans: {
@@ -30,19 +31,40 @@ declare global {
 }
 
 (async () => {
+  // var bar = new ProgressBar("Generating DMN model preview [:bar] :percent :etas", {
+  //   complete: "=",
+  //   incomplete: " ",
+  //   width: 20,
+  //   total: 9,
+  // });
+
   const a0 = new Date().getTime();
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      // "--disable-accelerated-2d-canvas",
+      "--no-first-run",
+      "--no-zygote",
+      "--disable-gpu",
+    ],
+  });
   const a1 = new Date().getTime();
   console.log("launch: " + (a1 - a0) + "ms");
+  // bar.tick(1);
   const page = await browser.newPage();
   const a2 = new Date().getTime();
   console.log("new page: " + (a2 - a1) + "ms");
+  // bar.tick(1);
   await page.goto(`file:///${__dirname}/dmn-editor/index.html`);
   const a3 = new Date().getTime();
   console.log("go to: " + (a3 - a2) + "ms");
+  // bar.tick(1);
   await page.waitForSelector("body");
   const a4 = new Date().getTime();
   console.log("load body: " + (a4 - a3) + "ms");
+  // bar.tick(1);
 
   await page.evaluate(function () {
     gwtEditorBeans
@@ -55,23 +77,30 @@ declare global {
   });
   const a5 = new Date().getTime();
   console.log("execute set content: " + (a5 - a4) + "ms");
+  // bar.tick(1);
 
   await page.waitForSelector("canvas");
   const a6 = new Date().getTime();
   console.log("wait canvas load: " + (a6 - a5) + "ms");
-  await page.click("canvas");
+  // bar.tick(1);
+  // await page.click("canvas");
   const a7 = new Date().getTime();
   console.log("click on canvas: " + (a7 - a6) + "ms");
+  // bar.tick(1);
+  await page.focus("ul.nav.nav-tabs > li + li a");
   await page.click("ul.nav.nav-tabs > li + li a");
   const a8 = new Date().getTime();
   console.log("open doc tab: " + (a8 - a7) + "ms");
+  // bar.tick(1);
   await page.waitForSelector("ul.nav.nav-tabs > li + li.active");
   const a9 = new Date().getTime();
   console.log("wait doc active: " + (a9 - a8) + "ms");
+  // bar.tick(1);
 
   const img = await page.$eval(".diagram-image", (el) => (el as any).src);
   const a10 = new Date().getTime();
   console.log("get image: " + (a10 - a9) + "ms");
+  // bar.tick(1);
 
   const data = img.replace(/^data:image\/\w+;base64,/, "");
 
@@ -113,7 +142,7 @@ declare global {
 //   .command("inspect <path>")
 //   .description("inspect elements into the DMN model")
 //   .action((path) => {
-//     console.log("inspect", path);
+// console.log("inspect", path);
 //   });
 
 // program.parse(process.argv);

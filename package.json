@@ -45,8 +45,10 @@
   },
   "dependencies": {
     "@types/open": "^6.2.1",
+    "@types/progress": "^2.0.3",
     "commander": "^5.1.0",
     "open": "^7.0.4",
+    "progress": "^2.0.3",
     "puppeteer": "^4.0.1"
   }
 }
