@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas width="550" height="400" id="canvas"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.beginPath();
+      ctx.rect(200, 20, 150, 100);
+      ctx.stroke();
+
+      // var link = document.createElement("a");
+      // link.download = "filename.png";
+      // link.href = canvas.toDataURL();
+      // link.click();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "standard",
+    "prettier/standard",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "legacyDecorators": true,
+      "jsx": true
+    }
+  },
+  "rules": {
+    "no-console": "off",
+    "no-useless-constructor": 0,
+    "allowTernary": true,
+    "space-before-function-paren": 0,
+    "import/export": 0,
+    "@typescript-eslint/explicit-function-return-type": "off"
+  }
+}

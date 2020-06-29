@@ -1,0 +1,49 @@
+{
+  "name": "dmn-cli",
+  "version": "0.0.8",
+  "main": "dist/index.js",
+  "source": "./src/index.ts",
+  "lib": [
+    "es6",
+    "es2015",
+    "dom"
+  ],
+  "bin": {
+    "dmn-cli": "./bin/dmn-cli"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "dmn",
+    "kogito",
+    "dmn-cli"
+  ],
+  "scripts": {
+    "clean": "rm -fr ./dist",
+    "build": "yarn run clean && tsc",
+    "start": "./bin/dmn-cli"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/puppeteer": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.w0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^2.0.4",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "commander": "^5.1.0",
+    "puppeteer": "^4.0.1",
+    "terminal-image": "^1.0.1"
+  }
+}
