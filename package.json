@@ -1,6 +1,6 @@
 {
   "name": "dmn-cli",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "dist/index.js",
   "source": "./src/index.ts",
   "lib": [
@@ -46,9 +46,11 @@
   "dependencies": {
     "@types/open": "^6.2.1",
     "@types/progress": "^2.0.3",
+    "@types/xml2js": "^0.4.5",
     "commander": "^5.1.0",
     "open": "^7.0.4",
     "progress": "^2.0.3",
-    "puppeteer": "^4.0.1"
+    "puppeteer": "^4.0.1",
+    "xml2js": "^0.4.23"
   }
 }

@@ -1,3 +1,4 @@
+"use strict";
 /*
  * Copyright 2020 Red Hat, Inc. and/or its affiliates.
  *
@@ -13,25 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { Command } from "commander";
-import { getPreview } from "./preview";
-import { inspect } from "./inspect";
-
-const program = new Command();
-
+exports.__esModule = true;
+var commander_1 = require("commander");
+var preview_1 = require("./preview");
+var inspect_1 = require("./inspect");
+var program = new commander_1.Command();
 program.name("dmn-cli");
 program.description("DMN command line tool");
 program.version("dmn-cli: 0.1.0", "-v, --version");
-
 program
-  .command("preview <path>")
-  .description("shows an image of the DMN model")
-  .action((path) => getPreview(path));
-
+    .command("preview <path>")
+    .description("shows an image of the DMN model")
+    .action(function (path) { return preview_1.getPreview(path); });
 program
-  .command("inspect <path>")
-  .description("inspect elements into the DMN model")
-  .action((path) => inspect(path));
-
+    .command("inspect <path>")
+    .description("inspect elements into the DMN model")
+    .action(function (path) { return inspect_1.inspect(path); });
 program.parse(process.argv);

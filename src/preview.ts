@@ -45,7 +45,7 @@ export const getPreview = (path: string) =>
       progressBar.tick(1);
       diagramData = await getDMNDiagramImage(dmnXml, browser, progressBar);
     } catch (e) {
-      raiseError("DMN model preview could not be generated.");
+      raiseError("DMN model preview could not be processed.");
     }
 
     try {
@@ -82,11 +82,7 @@ async function initBrowser() {
   });
 }
 
-async function getDMNDiagramImage(
-  dmnXml: string,
-  browser: Browser,
-  progressBar: ProgressBar
-) {
+async function getDMNDiagramImage(dmnXml: string, browser: Browser, progressBar: ProgressBar) {
   const page = await browser.newPage();
 
   progressBar.tick(1);
@@ -111,24 +107,18 @@ async function getDMNDiagramImage(
   await page.waitForSelector("ul.nav.nav-tabs > li + li.active");
 
   progressBar.tick(1);
-  const diagramData = page.$eval(
-    ".diagram-image",
-    (el) => (el as any).src as string
-  );
+  const diagramData = page.$eval(".diagram-image", (el) => (el as any).src as string);
 
   return diagramData;
 }
 
 function initProgressBar() {
-  return new ProgressBar(
-    "Generating DMN model preview [:bar] (:current/:total)",
-    {
-      complete: "=",
-      incomplete: " ",
-      width: 20,
-      total: 10,
-    }
-  );
+  return new ProgressBar("Processing DMN model preview... [:bar] (:current/:total)", {
+    complete: "=",
+    incomplete: " ",
+    width: 20,
+    total: 10,
+  });
 }
 
 function createImageFile(imageData: string) {

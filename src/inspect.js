@@ -1,3 +1,4 @@
+"use strict";
 /*
  * Copyright 2020 Red Hat, Inc. and/or its affiliates.
  *
@@ -13,25 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { Command } from "commander";
-import { getPreview } from "./preview";
-import { inspect } from "./inspect";
-
-const program = new Command();
-
-program.name("dmn-cli");
-program.description("DMN command line tool");
-program.version("dmn-cli: 0.1.0", "-v, --version");
-
-program
-  .command("preview <path>")
-  .description("shows an image of the DMN model")
-  .action((path) => getPreview(path));
-
-program
-  .command("inspect <path>")
-  .description("inspect elements into the DMN model")
-  .action((path) => inspect(path));
-
-program.parse(process.argv);
+exports.__esModule = true;
+exports.inspect = void 0;
+var fs_1 = require("fs");
+var xml2js_1 = require("xml2js");
+exports.inspect = function (path) {
+    console.log("inspecting...", path);
+    var dmnXml = fs_1["default"].readFileSync(path, "utf8");
+    xml2js_1.parseStringPromise(dmnXml)
+        .then(function (dmn) {
+        console.log(dmn);
+    })["catch"](function () {
+        raiseError("DMN model could not be parsed.");
+    });
+};
+function raiseError(errorMessage) {
+    console.error("\n\n :: Error (dmn-cli) :: " + errorMessage + "\n");
+    process.exit();
+}
