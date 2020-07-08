@@ -161,7 +161,7 @@ export const inspect = (path: string) => {
       logEntry("Version", inspector.getVersion());
       logEntries("DMN nodes", inspector.getDmnNodes());
 
-      console.log(" ─ Data Types:");
+      console.log(" ─ DMN data types:");
       inspector.getDmnDataTypes().forEach((dataType) => logDataType(1, dataType));
     })
     .catch(() => {

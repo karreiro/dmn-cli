@@ -11,7 +11,8 @@
   "bin": {
     "dmn-cli": "./bin/dmn-cli"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
+  "homepage": "http://dmn-cli.com",
   "keywords": [
     "cli",
     "dmn",
