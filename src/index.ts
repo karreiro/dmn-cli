@@ -15,19 +15,19 @@
  */
 
 import { Command } from "commander";
-import { getPreview } from "./preview";
+import { preview } from "./preview";
 import { inspect } from "./inspect";
 
 const program = new Command();
 
 program.name("dmn-cli");
-program.description("DMN command line tool");
+program.description("DMN command line tools");
 program.version("dmn-cli: 0.1.0", "-v, --version");
 
 program
   .command("preview <path>")
   .description("shows an image of the DMN model")
-  .action((path) => getPreview(path));
+  .action((path) => preview(path));
 
 program
   .command("inspect <path>")

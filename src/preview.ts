@@ -21,7 +21,7 @@ import ProgressBar from "progress";
 
 const DIAGRAM_NAME = "diagram.png";
 
-export const getPreview = (path: string) =>
+export const preview = (path: string) =>
   (async () => {
     let dmnXml: string = "";
     let diagramData: string = "";
