@@ -1,6 +1,6 @@
 {
   "name": "dmn-cli",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "main": "dist/index.js",
   "source": "./src/index.ts",
   "lib": [
@@ -27,15 +27,15 @@
     "start": "./bin/dmn-cli"
   },
   "devDependencies": {
-    "@types/commander": "^2.12.2",
-    "@types/puppeteer": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^2.26.w0",
-    "@typescript-eslint/parser": "^2.26.0",
     "@types/bytebuffer": "^5.0.42",
+    "@types/commander": "^2.12.2",
     "@types/open": "^6.2.1",
     "@types/progress": "^2.0.3",
+    "@types/puppeteer": "^2.0.0",
     "@types/uuid": "^8.3.0",
     "@types/xml2js": "^0.4.5",
+    "@typescript-eslint/eslint-plugin": "^2.26.w0",
+    "@typescript-eslint/parser": "^2.26.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",
