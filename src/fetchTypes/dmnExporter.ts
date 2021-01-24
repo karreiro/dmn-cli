@@ -58,10 +58,18 @@ function getItemDefintionRow(dataType: DataType) {
 function getItemComponent(dataType: DataType): string {
   return `
     <dmn:itemComponent id="${uuid()}" name="${dataType.name}" isCollection="false">
-      <dmn:typeRef>${dataType.type}</dmn:typeRef>
+      ${getTypeRef(dataType)}
       ${dataType.children?.map((dt) => getItemComponent(dt)).join("")}
     </dmn:itemComponent>
   `;
+}
+
+function getTypeRef(dataType: DataType) {
+  const type = dataType.type;
+  if (type) {
+    return `<dmn:typeRef>${type}</dmn:typeRef>`;
+  }
+  return "";
 }
 
 function uuid() {

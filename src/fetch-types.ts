@@ -14,17 +14,36 @@
  * limitations under the License.
  */
 
+import fs from "fs";
 import { fetchJavaClassesAsDataTypes } from "./fetchTypes/javaReader";
 import { convertJavaTypesToDmnTypes } from "./fetchTypes/javaToDmnConverter";
 import { saveModelWithDataTypes } from "./fetchTypes/dmnExporter";
+import { DataType } from "./fetchTypes/DataType";
 
 export const fetchTypes = (path: string) => {
   try {
-    const javaDataTypes = fetchJavaClassesAsDataTypes(path);
-    const dmnDataTypes = convertJavaTypesToDmnTypes(javaDataTypes);
-
+    const dmnDataTypes = getDmnDataTypes(path);
     saveModelWithDataTypes(dmnDataTypes);
   } catch (err) {
     console.log(`Error: ${err.message}`);
   }
 };
+
+function getDmnDataTypes(path: string) {
+  const isJsonPath = /\.json$/.test(path);
+  if (isJsonPath) {
+    return getDataTypesFromJsonFile(path);
+  } else {
+    return getDataTypesFromJavaProjectDir(path);
+  }
+}
+
+function getDataTypesFromJsonFile(path: string): DataType[] {
+  const fileString = fs.readFileSync(path, { encoding: "utf8", flag: "r" });
+  return JSON.parse(fileString);
+}
+
+function getDataTypesFromJavaProjectDir(path: string): DataType[] {
+  const javaDataTypes = fetchJavaClassesAsDataTypes(path);
+  return convertJavaTypesToDmnTypes(javaDataTypes);
+}
