@@ -17,6 +17,7 @@
 import { Command } from "commander";
 import { preview } from "./preview";
 import { inspect } from "./inspect";
+import { fetchTypes } from "./fetch-types";
 
 const program = new Command();
 
@@ -31,7 +32,12 @@ program
 
 program
   .command("inspect <path>")
-  .description("inspect elements into the DMN model")
+  .description("inspects elements into the DMN model")
   .action((path) => inspect(path));
+
+program
+  .command("fetch-types <path>")
+  .description("fetches types from a path and creates a 'types.dmn' model with them")
+  .action((path) => fetchTypes(path));
 
 program.parse(process.argv);
