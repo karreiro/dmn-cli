@@ -43,6 +43,10 @@ function generateDmnModel(dataTypes: DataType[]) {
       xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/"
       xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_039698F4-792A-4168-BB57-98D5AD935AED" name="types" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/${namespaceUUID}">
       ${dataTypes.map((dt) => getItemDefintionRow(dt)).join("")}
+      <dmndi:DMNDI>
+        <dmndi:DMNDiagram id="${uuid()}" name="DRG">
+        </dmndi:DMNDiagram>
+      </dmndi:DMNDI>
     </dmn:definitions>
   `;
 }
