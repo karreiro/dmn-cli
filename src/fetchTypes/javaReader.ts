@@ -53,7 +53,7 @@ function getJavaClasses(path: string) {
 
 function getClassName(javaClass: JavaClassFile) {
   const classNameIndex = getClassNameIndex(javaClass);
-  const className = getNameFromConstantPool(javaClass, classNameIndex) ?? "";
+  const className = getNameFromConstantPool(javaClass, classNameIndex) || "";
   return className.replace(/\.java*$/, "");
 }
 
@@ -73,9 +73,9 @@ function getFieldName(javaClass: JavaClassFile, fieldInfo: FieldInfo) {
 }
 
 function getFieldType(javaClass: JavaClassFile, fieldInfo: FieldInfo) {
-  const fullName = getNameFromConstantPool(javaClass, fieldInfo.descriptor_index) ?? "";
+  const fullName = getNameFromConstantPool(javaClass, fieldInfo.descriptor_index) || "";
   const fullNameParts = fullName.split("/");
-  const typeName = fullNameParts.pop() ?? "";
+  const typeName = fullNameParts.pop() || "";
   return typeName.slice(0, -1);
 }
 

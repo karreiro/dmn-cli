@@ -25,7 +25,7 @@ function convertDataType(dataType: DataType, customTypes: string[]): DataType {
   return {
     name: dataType.name,
     type: inferDmnType(dataType.type, customTypes),
-    children: dataType.children?.map((dt) => convertDataType(dt, customTypes)) ?? [],
+    children: dataType.children?.map((dt) => convertDataType(dt, customTypes)) || [],
   };
 }
 
@@ -74,5 +74,5 @@ function inferBuiltInType(type: string) {
     ChronoPeriod: "duration",
     Boolean: "boolean",
   };
-  return (javaToDmnMap as any)[type] ?? "any";
+  return (javaToDmnMap as any)[type] || "any";
 }
